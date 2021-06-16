@@ -1,10 +1,3 @@
-jQuery(window).on('load', function() {
-	"use strict";
-    setTimeout(function(){
-        $(".preloader").addClass("hide-preloader");
-    }, 300 );
-});
-
 jQuery(document).ready(function($) {
 	"use strict";
     // SMOOTH SCROLL FOR SAME PAGE LINKS
