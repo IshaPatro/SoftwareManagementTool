@@ -1,0 +1,207 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Jira Workflow Automation Machine App - Jira Update</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="https://unpkg.com/@ag-grid-community/all-modules@25.3.0/dist/ag-grid-community.min.js"></script>
+  <script src="https://unpkg.com/@ag-grid-enterprise/all-modules@25.3.0/dist/ag-grid-enterprise.min.js"></script>
+  <script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+  <link href = "https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel = "stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/dist/styles/ag-grid.css">
+  <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/dist/styles/ag-theme-balham.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- <link rel="stylesheet" href="main.css"> -->
+  <link rel="stylesheet" href="style.css">
+  <script src="main.js"></script>
+  <script src="script.js"></script>
+
+</head>
+<body>
+
+  <div class="preloader">
+      <!-- <div class="spinner"></div> -->
+      <div id="loading" align="center">
+       <img id="loading-image" src="preloader.gif" alt="Loading..."/>
+     </div>
+  </div>
+  <div class="image-container">
+    <video autoplay muted loop id="myVideo">
+      <source src="demo.mp4" type="video/mp4">
+    </video>
+  </div>
+    <div class="content-area">
+      <div class="content-area-inner">
+        <section id="intro">
+            <div class="container-mid">
+                <div class="animation-container animation-fade-right" data-animation-delay="0">
+                    <h1>JIRA Software</h1>
+                    <h4>Jira Software is built for every member of your software team to plan,track, and release great software.<h4>
+                </div>
+                <div class="animation-container animation-fade-right" data-animation-delay="200">
+                    <a href="#main-context" class="smooth-scroll"><div class="circle"><i class="fa fa-angle-down" aria-hidden="true"></i><i class="fa fa-angle-down" aria-hidden="true"></i></div></a>
+                </div>
+              </div>
+          </section>
+        </div>
+  </div>
+  <section id="main-context" style="background-color: #242526;height: 100%;" ><br>
+
+    <div id="myModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <span id="modal-text" style="white-space: pre-line"></span>
+      </div>
+    </div>
+
+    <div id="single-upload" class="modal" >
+      <div class="modal-content"  style="padding-left:7%;padding-top:2.5%;width: 50%;background-color: #242526;">
+        <span class="close">&times;</span>
+        <form>
+          <div class="row">
+            <div class="col">
+              <label style="width:50%">
+                Project<br>
+                <select class="modalform" id="proj">
+                  <option value="PROJECT1">PROJECT1</option>
+                  <option value="PROJECT2">PROJECT2</option>
+                  <option value="PROJECT3">PROJECT3</option>
+                  <option value="PROJECT4">PROJECT4</option>
+                </select>
+              </label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <label>
+                Title<span style="color:red;">*</span><br>
+                <input type="text" class="modalform" id="title" style="width:80%;" required>
+              </label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <label>
+                Description<span style="color:red;">*</span><br>
+                <input type="text" class="modalform" id="description" style="width:80%;" required>
+              </label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-6">
+              <label style="width:40%;float:left;padding-right:5%">
+                Type<br>
+                <select class="modalform" id="type" >
+                  <option value="Story">Story</option>
+                  <option value="Epic">Epic</option>
+                  <option value="Technical Task">Technical Task</option>
+                  <option value="Deliverable">Deliverable</option>
+                  <option value="Action Item">Action Item</option>
+                  <option value="Defect">Defect</option>
+                  <option value="Bug">Bug</option>
+                  <option value="Release">Release</option>
+                  <option value="Initiative">Initiative</option>
+                  <option value="Risk">Risk</option>
+                  <option value="Assumption">Assumption</option>
+                  <option value="Issue">Issue</option>
+                  <option value="Dependency">Dependency</option>
+                  <option value="Technical Objective">Technical Objective</option>
+                </select>
+              </label>
+            </div>
+            <div class="col-6">
+                <label style="width:40%;float:left;padding-left:5%;">
+                  Priority<br>
+                  <select class="modalform" id="priority">
+                    <option value="High">High</option>
+                    <option value="Medium">Medium</option>
+                    <option value="Low">Low</option>
+                    <option value="Blocker">Blocker</option>
+                    <option value="Urgent">Urgent</option>
+                    <option value="Regulatory">Regulatory</option>
+                  </select>
+                </label>
+          </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <label style="width:85%;float:left;padding-right:5%;">
+                Asignee<br>
+                <input type="text" class="modalform" id="assignee">
+              </label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <label style="width:40%;float:left;padding-right:5%;">
+                Original Estimate<br>
+                <input type="number" class="modalform" id="weeks" style="width:35%">w &nbsp;
+                <input type="number" class="modalform" id="days" style="width:35%;">d
+              </label>
+            </div>
+            <div class="col">
+              <label style="width:40%;float:left;padding-left:5%;">
+                Due Date<br>
+                <input type="date" class="modalform" id="date">
+              </label>
+            </div>
+          </div>
+          <br><br>
+          <div class="row" style="padding-left:40%">
+            <input type="button" id="single_upload" class="btn btn-m btn-primary button expand"  onclick="singleJira()" style="height:40px;font-size: 20px;font-weight: 600;" value="Submit">
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div id="bulk-upload" class="modal" >
+      <div class="modal-content"  style="padding-left:5%;padding-top:2.5%;padding-bottom:5%;width: 50%;background-color: #242526;">
+        <span class="close">&times;</span>
+        <form method="post" enctype="multipart/form-data">
+          <input type="file" name="file" id="txtFileUpload" accept=".csv" style="float:left;background-color: #242526;"/>
+          <button id="upload" class="btn btn-m" type="button" onclick="uploadFile()" style="float:left;background-color:blue;">Submit</button>
+        </form>
+        <br><small><a href="javascript:downloadcsv()">Click here</a> for sample CSV template.</small>
+        <br><br><br><p id="file-modal-text"></p><p id="file-modal-text-extra"></p>
+      </div>
+    </div>
+
+    <div class="row" style="margin:3%">
+      <div class="col-md-2"></div>
+      <div class="col-md-3">
+        <select class="form-control" placeholder="project" id="project" >
+          <option value="PROJECT1">PROJECT1</option>
+          <option value="PROJECT2">PROJECT2</option>
+          <option value="PROJECT3">PROJECT3</option>
+          <option value="PROJECT4">PROJECT4</option>
+        </select>
+      </div>
+
+      <div class="col-md-2" >
+        <div class="row">
+          <div class="col-md-1" >
+            <input type="checkbox" id="closedJiras" style="margin-top:-6px;">
+          </div>
+          <div class="col-md-10" style="padding-left:5px">
+            <label for="closedJiras"> Show Closed Jiras</label>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3" style="float:left;margin-left:-5%;">
+        <button id="search" class="btn btn-m" type="button" style="background-color:blue;color:#fff;">Search</button>
+        <button id="update" class="btn btn-m" style="background-color:#cc0000;color:#fff;" type="button">Update</button>
+      </div>
+      <div class="col-md-1" style="margin-left:-5%;">
+        <button id="single-create" class="btn btn-m" type="button" style="background-color:#D2691E;color:#fff;" onClick="singleUpload()">+ Create Single Jiras</button>
+      </div>
+      <div class="col-md-1" style="padding-left: 5%;">
+        <button id="create" class="btn btn-m " style="background-color:#ffa500;color:#fff;" type="button" onClick="bulkUpload()">+ Create Bulk Jiras</button>
+      </div>
+    </div>
+
+    <div id="myGrid" class="Component-root-869 ag-theme-balham-dark" style="height: 100%; margin:0%">
+
+  </section>
+
+</body>
+</html>
