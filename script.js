@@ -1,5 +1,24 @@
-var prevRowOnFocus=null;
-var sessionIdStr=null;
+jQuery(document).ready(function($) {
+	"use strict";
+    // SMOOTH SCROLL FOR SAME PAGE LINKS
+    $(document).on('click', 'a.smooth-scroll', function(event) {
+        event.preventDefault();
+        $('html, body').animate({
+            scrollTop: $( $.attr(this, 'href') ).offset().top
+        }, 500);
+    });
+    window.sr = ScrollReveal();
+    sr.reveal(".scroll-animated", {
+        duration: 600,
+        delay: 0,
+        origin: "left",
+        rotate: { x: 0, y: 0, z: 0 },
+        opacity: 0,
+        distance: "20vh",
+        viewFactor: 0.4,
+        scale: 1,
+    });
+});
 
 function extractValues(mappings) {
   return Object.keys(mappings);
@@ -216,10 +235,6 @@ var gridOptions = {
       },
     },
     {
-      field: 'comment',
-      minWidth: 100,
-    },
-    {
       field: 'originalEstimate',
       minWidth: 80,
       tooltipField: 'originalEstimate'
@@ -342,8 +357,8 @@ document.addEventListener('DOMContentLoaded', function () {
 var rowData = new Array(20).fill().map(function() {
     return {
       jiraNumber: "PROJECT"+Math.floor(Math.random() * 4 + 1)+" - "+Math.floor(Math.random() * 900 + 100),
-      openIssue: "Description"+Math.floor(Math.random() * 900 + 100),
-      title: "Issue"+Math.floor(Math.random() * 900 + 100),
+      openIssue: "Description-"+Math.floor(Math.random() * 900 + 100),
+      title: "Issue-"+Math.floor(Math.random() * 900 + 100),
       type: typ[Math.floor(Math.random() * 14)],
       priority: prt[Math.floor(Math.random() * 6)],
       status:status[Math.floor(Math.random() * 12)],
