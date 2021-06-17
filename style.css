@@ -82,7 +82,7 @@ input{
 }
 
 /*------------------------------------Content Area-------------------------------------*/
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 500px)  {
   #intro .animation-container {
     transform: translateX(10vh) !important;
   }
