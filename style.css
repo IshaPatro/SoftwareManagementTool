@@ -82,6 +82,11 @@ input{
 }
 
 /*------------------------------------Content Area-------------------------------------*/
+@media only screen and (max-width: 600px) {
+  #intro .animation-container {
+    transform: translateX(10vh) !important;
+  }
+}
 
 .content-area{
     position: relative;
